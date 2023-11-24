@@ -11,15 +11,19 @@ public enum BallStatus {
         this.message = message;
     }
 
+    public String getMessage() {
+        return message;
+    }
+
     public boolean isNotNothing() {
         return this != NOTHING;
     }
 
     public boolean isStrike() {
-        return this != STRIKE;
+        return this == STRIKE;
     }
 
     public boolean isBall() {
-        return this != BALL;
+        return this == BALL;
     }
 }

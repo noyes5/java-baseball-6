@@ -29,7 +29,7 @@ public class Balls {
 
     public BallStatus play(Ball userBall) {
         return answers.stream()
-                .map(answers -> answers.play(userBall))
+                .map(answer -> answer.play(userBall))
                 .filter(BallStatus::isNotNothing)
                 .findFirst()
                 .orElse(BallStatus.NOTHING);
