@@ -12,4 +12,8 @@ public class User {
     private Balls createByNumber(List<Integer> userNumber) {
         return Balls.create(userNumber);
     }
+
+    public Balls getBalls() {
+        return this.balls;
+    }
 }

@@ -26,4 +26,18 @@ public class Balls {
                 .mapToObj(i -> new Ball(i + 1, answers.get(i)))
                 .toList();
     }
+
+    private BallStatus play(Ball userBall) {
+        return answers.stream()
+                .map(answers -> answers.play(userBall))
+                .filter(BallStatus::isNotNothing)
+                .findFirst()
+                .orElse(BallStatus.NOTHING);
+    }
+
+    public PlayResult play(Balls userBalls) {
+        PlayResult result = new PlayResult();
+        answers.forEach(answerBall -> result.report(userBalls.play(answerBall)));
+        return result;
+    }
 }

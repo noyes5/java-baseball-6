@@ -15,4 +15,8 @@ public class Computer {
         Balls balls = Balls.create(numberGenerator.createUniqueNumbers(BALL_AMOUNT));
         this.balls = balls;
     }
+
+    public PlayResult play(Balls userBalls) {
+        return balls.play(userBalls);
+    }
 }
