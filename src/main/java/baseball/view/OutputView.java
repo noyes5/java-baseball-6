@@ -3,6 +3,7 @@ package baseball.view;
 import static baseball.domain.BallStatus.BALL;
 import static baseball.domain.BallStatus.NOTHING;
 import static baseball.domain.BallStatus.STRIKE;
+import static baseball.util.Constants.SPACE;
 
 import baseball.domain.PlayResult;
 
@@ -43,7 +44,7 @@ public class OutputView {
                     .append(BALL.getMessage());
         }
         if (gameResult.length() != 0) {
-            gameResult.append(LINE_SEPARATOR);
+            gameResult.append(SPACE);
         }
     }
 

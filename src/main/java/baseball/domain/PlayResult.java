@@ -1,5 +1,7 @@
 package baseball.domain;
 
+import static baseball.util.Constants.BALL_AMOUNT;
+
 public class PlayResult {
     private int strike = 0;
     private int ball = 0;
@@ -19,5 +21,9 @@ public class PlayResult {
         if (status.isBall()) {
             this.ball += 1;
         }
+    }
+
+    public boolean isNotGameEnd() {
+        return this.strike != BALL_AMOUNT;
     }
 }
