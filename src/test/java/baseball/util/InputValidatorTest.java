@@ -3,6 +3,7 @@ package baseball.util;
 import static baseball.util.ExceptionMessage.INVALID_NUMBER_LENGTH;
 import static baseball.util.ExceptionMessage.INVALID_NUMBER_RANGE;
 import static baseball.util.ExceptionMessage.INVALID_NUMERIC_INPUT;
+import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.DisplayName;
@@ -39,6 +40,16 @@ class InputValidatorTest {
             assertThatThrownBy(() -> InputValidator.validateUserNumber(input))
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessage(INVALID_NUMBER_RANGE.getMessage());
+        }
+    }
+
+    @Nested
+    class ValidInput {
+        @ParameterizedTest
+        @ValueSource(strings = {"123", "459", "928", "281"})
+        void 정상_입력_검증(String input) {
+            assertThatCode(() -> InputValidator.validateUserNumber(input))
+                    .doesNotThrowAnyException();
         }
     }
 }
