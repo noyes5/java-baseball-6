@@ -1,6 +1,7 @@
 package baseball.controller;
 
 import baseball.domain.Computer;
+import baseball.domain.PlayResult;
 import baseball.domain.User;
 import baseball.util.ComputerNumberGenerator;
 import baseball.view.InputView;
@@ -17,10 +18,11 @@ public class BaseballController {
     }
 
     public void play() {
-        System.out.println("숫자 야구 게임을 시작합니다.");
+        outputView.printMainMessage();
         initComputerBalls();
         User user = readUserNumber();
-        computer.play(user.getBalls());
+        PlayResult result = computer.play(user.getBalls());
+        outputView.printGameResult(result);
     }
 
     private void initComputerBalls() {
