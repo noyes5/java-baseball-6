@@ -27,7 +27,7 @@ public class Balls {
                 .toList();
     }
 
-    private BallStatus play(Ball userBall) {
+    public BallStatus play(Ball userBall) {
         return answers.stream()
                 .map(answers -> answers.play(userBall))
                 .filter(BallStatus::isNotNothing)
