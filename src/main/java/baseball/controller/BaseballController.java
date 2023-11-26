@@ -22,11 +22,18 @@ public class BaseballController {
 
     public void play() {
         outputView.printMainMessage();
-        while (gameStatus.isGameContinue()) {
-            playSingleGame();
-            outputView.printGameEnd();
-            gameStatus = GameStatus.from(inputView.readRetryCommand());
+        while (canContinueGame()) {
+            playBaseBallGame();
         }
+    }
+
+    private void playBaseBallGame() {
+        playSingleGame();
+        gameStatus = GameStatus.from(inputView.readRetryCommand());
+    }
+
+    private boolean canContinueGame() {
+        return gameStatus.isGameContinue();
     }
 
     private void playSingleGame() {
@@ -37,6 +44,7 @@ public class BaseballController {
             result = computer.play(user.getBalls());
             outputView.printGameResult(result);
         }
+        outputView.printGameEnd();
     }
 
     private void initComputerBalls() {
