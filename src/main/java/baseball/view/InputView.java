@@ -7,6 +7,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public class InputView {
+    private static final String DELIMITER = "";
+
     public List<Integer> readUserNumber() {
         System.out.print(Message.INPUT_USER_NUMBER.message);
         String input = Console.readLine();
@@ -15,7 +17,7 @@ public class InputView {
     }
 
     private List<Integer> parseUserInputToNumbers(String input) {
-        return Arrays.stream(input.split(""))
+        return Arrays.stream(input.split(DELIMITER))
                 .map(Integer::parseInt)
                 .toList();
     }
