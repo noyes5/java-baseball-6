@@ -22,7 +22,11 @@ public class BaseballController {
 
     public void play() {
         outputView.printMainMessage();
-        playSingleGame();
+        while (gameStatus.isGameContinue()) {
+            playSingleGame();
+            outputView.printGameEnd();
+            gameStatus = GameStatus.from(inputView.readRetryCommand());
+        }
     }
 
     private void playSingleGame() {

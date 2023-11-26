@@ -3,15 +3,14 @@ package baseball.view;
 import static baseball.domain.BallStatus.BALL;
 import static baseball.domain.BallStatus.NOTHING;
 import static baseball.domain.BallStatus.STRIKE;
+import static baseball.util.Constants.BALL_AMOUNT;
 import static baseball.util.Constants.SPACE;
 
 import baseball.domain.PlayResult;
 
 public class OutputView {
-    private static final String LINE_SEPARATOR = System.lineSeparator();
-
     public void printMainMessage() {
-        System.out.println("숫자 야구 게임을 시작합니다.");
+        System.out.println(Message.GAME_INTRO.message);
     }
 
     public void printGameResult(PlayResult result) {
@@ -28,14 +27,8 @@ public class OutputView {
         appendBallResult(ball, gameResult);
         appendStrikeResult(strike, gameResult);
         appendNothing(strike, ball, gameResult);
-        return gameResult.toString();
-    }
 
-    private void appendStrikeResult(int strike, StringBuilder gameResult) {
-        if (strike != 0) {
-            gameResult.append(strike)
-                    .append(STRIKE.getMessage());
-        }
+        return gameResult.toString();
     }
 
     private void appendBallResult(int ball, StringBuilder gameResult) {
@@ -48,9 +41,31 @@ public class OutputView {
         }
     }
 
+    private void appendStrikeResult(int strike, StringBuilder gameResult) {
+        if (strike != 0) {
+            gameResult.append(strike)
+                    .append(STRIKE.getMessage());
+        }
+    }
+
     private void appendNothing(int strike, int ball, StringBuilder gameResult) {
         if (ball == 0 && strike == 0) {
             gameResult.append(NOTHING.getMessage());
+        }
+    }
+
+    public void printGameEnd() {
+        System.out.println(String.format(Message.GAME_RESULT.message, BALL_AMOUNT));
+    }
+
+    private enum Message {
+        GAME_INTRO("숫자 야구 게임을 시작합니다."),
+        GAME_RESULT("%d개의 숫자를 모두 맞히셨습니다! 게임 종료");
+
+        private final String message;
+
+        Message(String message) {
+            this.message = message;
         }
     }
 }
