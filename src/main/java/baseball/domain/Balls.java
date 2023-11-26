@@ -1,6 +1,7 @@
 package baseball.domain;
 
 import static baseball.util.Constants.BALL_AMOUNT;
+import static baseball.util.ExceptionMessage.INVALID_BALL_AMOUNT;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +16,7 @@ public class Balls {
 
     public static Balls create(List<Integer> answers) {
         if (answers.size() != BALL_AMOUNT) {
-            throw new IllegalArgumentException("볼의 갯수는 3개여야 합니다.");
+            throw new IllegalArgumentException(INVALID_BALL_AMOUNT.getMessage());
         }
         List<Ball> mappedBalls = mapBalls(answers);
         return new Balls(mappedBalls);
